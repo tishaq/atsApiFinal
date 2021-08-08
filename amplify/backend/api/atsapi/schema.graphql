@@ -1,0 +1,64 @@
+type Transaction @model {
+  id: ID!
+  agent: Agent! @connection(name: "AgentTransaction")
+  device: Device! @connection(name: "DeviceTransaction")
+  item: Item! @connection(name: "TransactionItem")
+  customer: Customer! @connection(name: "CustomerTransaction")
+  amount: String!
+  quantity: String!
+  date: String!
+  timeStamp: String!
+}
+
+type Agent @model {
+  id: ID!
+  name: String!
+  customers: [Customer] @connection(name: "CustomerAgent")
+  Transactions: [Transaction] @connection(name: "AgentTransaction")
+  email: String
+  password: String!
+  phone: String!
+  type: String!
+}
+
+type Device @model {
+  id: ID!
+  Transactions: [Transaction] @connection(name: "DeviceTransaction")
+  items: [Item] @connection(name: "DeviceItem")
+  name: String!
+  deviceId: String!
+  location: String!
+  lga: String
+  state: String
+  community: String
+}
+
+type Item @model {
+  id: ID!
+  code: String!
+  device: Device! @connection(name: "DeviceItem")
+  Transactions: [Transaction] @connection(name: "TransactionItem")
+  category: String!
+  name: String!
+  measure: String!
+  unit: String
+  withQuantity: Boolean!
+  withFromTo: Boolean!
+}
+
+type Customer @model {
+  id: ID!
+  name: String!
+  agent: Agent @connection(name: "CustomerAgent")
+  transactions: [Transaction] @connection(name: "CustomerTransaction")
+  phone: String!
+  code: String!
+}
+type ApiUser @model {
+  id: ID!
+  apiKey: String!
+  apiUsername: String!
+  role: String!
+}
+
+
