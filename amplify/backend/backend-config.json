@@ -1,28 +1,22 @@
 {
-    "auth": {
-        "atsapice6b582d": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [],
-            "customAuth": false
+  "auth": {},
+  "api": {
+    "atsapi": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 365,
+              "description": "Ajisaq ticketing final key"
+            }
+          },
+          "additionalAuthenticationProviders": []
         }
-    },
-    "api": {
-        "atsapi": {
-            "service": "AppSync",
-            "providerPlugin": "awscloudformation",
-            "output": {
-                "authConfig": {
-                    "defaultAuthentication": {
-                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-                        "userPoolConfig": {
-                            "userPoolId": "authatsapice6b582d"
-                        }
-                    },
-                    "additionalAuthenticationProviders": []
-                }
-            },
-            "rdsInit": true
-        }
+      },
+      "rdsInit": true
     }
+  }
 }
