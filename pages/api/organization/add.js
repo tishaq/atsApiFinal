@@ -15,33 +15,29 @@ export default async (req, res) => {
         req.query.apiKey &&
         req.query.hash &&
         req.query.name &&
-        req.query.email &&
-        req.query.password &&
-        req.query.phone &&
-        req.query.type
+        req.query.description &&
+        req.query.logoUrl &&
+        req.query.phone
     ) {
         const apiUser = req.query.apiUser;
         const apiKey = req.query.apiKey;
         const hash = req.query.hash;
         const name = req.query.name;
-        const email = req.query.email;
-        const password = req.query.password;
+        const description = req.query.description;
+        const logoUrl = req.query.logoUrl
         const phone = req.query.phone;
-        const type = req.query.type;
         if (hash === jsSha512(
             name +
-            email +
-            password +
-            phone +
-            type
+            description +
+            logoUrl +
+            phone
         )) {
-            const createAgentInput = {
+            const createOrganizationInput = {
                 input: {
                     name,
-                    email,
-                    password,
-                    phone,
-                    type
+                    description,
+                    logoUrl,
+                    phone
                 }
             }
 
@@ -58,11 +54,11 @@ export default async (req, res) => {
                     apiKey == apiUserResponse.apiKey) {
                     try {
                         raw = await API.graphql(
-                            graphqlOperation(mutations.createAgent, createAgentInput)
+                            graphqlOperation(mutations.createOrganization, createOrganizationInput)
                         );
-                        const agentResponse = raw.data.createAgent || {};
+                        const organizationResponse = raw.data.createOrganization || {};
                         res.setHeader("Content-Type", "application/json");
-                        res.end(JSON.stringify({ status: "Ok", data: agentResponse }));
+                        res.end(JSON.stringify({ status: "Ok", data: organizationResponse }));
                     } catch (errors) {
                         res.setHeader("Content-Type", "application/json");
                         res.end(JSON.stringify({ status: "Error", description: errors }));

@@ -15,6 +15,7 @@ type Agent @model {
   name: String!
   customers: [Customer] @connection(name: "CustomerAgent")
   Transactions: [Transaction] @connection(name: "AgentTransaction")
+  Organization: Organization! @connection(name: "AgentOrganization")
   email: String
   password: String!
   phone: String!
@@ -25,6 +26,7 @@ type Device @model {
   id: ID!
   Transactions: [Transaction] @connection(name: "DeviceTransaction")
   items: [Item] @connection(name: "DeviceItem")
+  Organization: Organization! @connection(name: "DeviceOrganization")
   name: String!
   deviceId: String!
   location: String!
@@ -61,4 +63,12 @@ type ApiUser @model {
   role: String!
 }
 
-
+type Organization @model{
+  id: ID!
+  Agents: [Agent] @connection(name: "AgentOrganization")
+  Devices: [Device] @connection(name: "DeviceOrganization")
+  name: String!
+  description: String
+  logoUrl: String!
+  phone: String!
+}

@@ -174,6 +174,15 @@ export const onCreateAgent = /* GraphQL */ `
       Transactions {
         nextToken
       }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
+      }
       email
       password
       phone
@@ -193,6 +202,15 @@ export const onUpdateAgent = /* GraphQL */ `
       }
       Transactions {
         nextToken
+      }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
       }
       email
       password
@@ -214,6 +232,15 @@ export const onDeleteAgent = /* GraphQL */ `
       Transactions {
         nextToken
       }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
+      }
       email
       password
       phone
@@ -232,6 +259,15 @@ export const onCreateDevice = /* GraphQL */ `
       }
       items {
         nextToken
+      }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
       }
       name
       deviceId
@@ -254,6 +290,15 @@ export const onUpdateDevice = /* GraphQL */ `
       items {
         nextToken
       }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
+      }
       name
       deviceId
       location
@@ -274,6 +319,15 @@ export const onDeleteDevice = /* GraphQL */ `
       }
       items {
         nextToken
+      }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
       }
       name
       deviceId
@@ -482,6 +536,63 @@ export const onDeleteApiUser = /* GraphQL */ `
       apiKey
       apiUsername
       role
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateOrganization = /* GraphQL */ `
+  subscription OnCreateOrganization {
+    onCreateOrganization {
+      id
+      Agents {
+        nextToken
+      }
+      Devices {
+        nextToken
+      }
+      name
+      description
+      logoUrl
+      phone
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateOrganization = /* GraphQL */ `
+  subscription OnUpdateOrganization {
+    onUpdateOrganization {
+      id
+      Agents {
+        nextToken
+      }
+      Devices {
+        nextToken
+      }
+      name
+      description
+      logoUrl
+      phone
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteOrganization = /* GraphQL */ `
+  subscription OnDeleteOrganization {
+    onDeleteOrganization {
+      id
+      Agents {
+        nextToken
+      }
+      Devices {
+        nextToken
+      }
+      name
+      description
+      logoUrl
+      phone
       createdAt
       updatedAt
     }

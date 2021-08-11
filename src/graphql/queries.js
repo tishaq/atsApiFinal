@@ -86,6 +86,15 @@ export const getAgent = /* GraphQL */ `
       Transactions {
         nextToken
       }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
+      }
       email
       password
       phone
@@ -125,6 +134,15 @@ export const getDevice = /* GraphQL */ `
       }
       items {
         nextToken
+      }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
       }
       name
       deviceId
@@ -280,6 +298,45 @@ export const listApiUsers = /* GraphQL */ `
         apiKey
         apiUsername
         role
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getOrganization = /* GraphQL */ `
+  query GetOrganization($id: ID!) {
+    getOrganization(id: $id) {
+      id
+      Agents {
+        nextToken
+      }
+      Devices {
+        nextToken
+      }
+      name
+      description
+      logoUrl
+      phone
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listOrganizations = /* GraphQL */ `
+  query ListOrganizations(
+    $filter: ModelOrganizationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listOrganizations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        logoUrl
+        phone
         createdAt
         updatedAt
       }

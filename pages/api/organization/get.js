@@ -1,4 +1,3 @@
-import * as mutations from "../../../src/graphql/mutations";
 import * as queries from "../../../src/graphql/queries";
 import { API, graphqlOperation } from "aws-amplify";
 import Amplify, { Auth } from "aws-amplify";
@@ -10,39 +9,19 @@ export default async (req, res) => {
     res.statusCode = 200;
     let raw = {}
     if (
-        req.method === "POST" &&
+        req.method === "GET" &&
         req.query.apiUser &&
         req.query.apiKey &&
         req.query.hash &&
-        req.query.name &&
-        req.query.email &&
-        req.query.password &&
-        req.query.phone &&
-        req.query.type
+        req.query.id
     ) {
         const apiUser = req.query.apiUser;
         const apiKey = req.query.apiKey;
         const hash = req.query.hash;
-        const name = req.query.name;
-        const email = req.query.email;
-        const password = req.query.password;
-        const phone = req.query.phone;
-        const type = req.query.type;
-        if (hash === jsSha512(
-            name +
-            email +
-            password +
-            phone +
-            type
-        )) {
-            const createAgentInput = {
-                input: {
-                    name,
-                    email,
-                    password,
-                    phone,
-                    type
-                }
+        const id = req.query.id
+        if (hash === jsSha512(id)) {
+            const getOrganizationInput = {
+                id
             }
 
             try {
@@ -58,11 +37,11 @@ export default async (req, res) => {
                     apiKey == apiUserResponse.apiKey) {
                     try {
                         raw = await API.graphql(
-                            graphqlOperation(mutations.createAgent, createAgentInput)
+                            graphqlOperation(queries.getOrganization, getOrganizationInput)
                         );
-                        const agentResponse = raw.data.createAgent || {};
+                        const organizationResponse = raw.data.getOrganization || {};
                         res.setHeader("Content-Type", "application/json");
-                        res.end(JSON.stringify({ status: "Ok", data: agentResponse }));
+                        res.end(JSON.stringify({ status: "Ok", data: organizationResponse }));
                     } catch (errors) {
                         res.setHeader("Content-Type", "application/json");
                         res.end(JSON.stringify({ status: "Error", description: errors }));

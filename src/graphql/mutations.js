@@ -186,6 +186,15 @@ export const createAgent = /* GraphQL */ `
       Transactions {
         nextToken
       }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
+      }
       email
       password
       phone
@@ -208,6 +217,15 @@ export const updateAgent = /* GraphQL */ `
       }
       Transactions {
         nextToken
+      }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
       }
       email
       password
@@ -232,6 +250,15 @@ export const deleteAgent = /* GraphQL */ `
       Transactions {
         nextToken
       }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
+      }
       email
       password
       phone
@@ -253,6 +280,15 @@ export const createDevice = /* GraphQL */ `
       }
       items {
         nextToken
+      }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
       }
       name
       deviceId
@@ -278,6 +314,15 @@ export const updateDevice = /* GraphQL */ `
       items {
         nextToken
       }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
+      }
       name
       deviceId
       location
@@ -301,6 +346,15 @@ export const deleteDevice = /* GraphQL */ `
       }
       items {
         nextToken
+      }
+      Organization {
+        id
+        name
+        description
+        logoUrl
+        phone
+        createdAt
+        updatedAt
       }
       name
       deviceId
@@ -536,6 +590,72 @@ export const deleteApiUser = /* GraphQL */ `
       apiKey
       apiUsername
       role
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createOrganization = /* GraphQL */ `
+  mutation CreateOrganization(
+    $input: CreateOrganizationInput!
+    $condition: ModelOrganizationConditionInput
+  ) {
+    createOrganization(input: $input, condition: $condition) {
+      id
+      Agents {
+        nextToken
+      }
+      Devices {
+        nextToken
+      }
+      name
+      description
+      logoUrl
+      phone
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateOrganization = /* GraphQL */ `
+  mutation UpdateOrganization(
+    $input: UpdateOrganizationInput!
+    $condition: ModelOrganizationConditionInput
+  ) {
+    updateOrganization(input: $input, condition: $condition) {
+      id
+      Agents {
+        nextToken
+      }
+      Devices {
+        nextToken
+      }
+      name
+      description
+      logoUrl
+      phone
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteOrganization = /* GraphQL */ `
+  mutation DeleteOrganization(
+    $input: DeleteOrganizationInput!
+    $condition: ModelOrganizationConditionInput
+  ) {
+    deleteOrganization(input: $input, condition: $condition) {
+      id
+      Agents {
+        nextToken
+      }
+      Devices {
+        nextToken
+      }
+      name
+      description
+      logoUrl
+      phone
       createdAt
       updatedAt
     }
