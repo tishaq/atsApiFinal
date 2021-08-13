@@ -14,6 +14,7 @@ export default async (req, res) => {
         req.query.apiUser &&
         req.query.apiKey &&
         req.query.hash &&
+        req.query.organizationId &&
         req.query.name &&
         req.query.deviceId &&
         req.query.location &&
@@ -24,6 +25,7 @@ export default async (req, res) => {
         const apiUser = req.query.apiUser;
         const apiKey = req.query.apiKey;
         const hash = req.query.hash;
+        const organizationId = req.query.organizationId;
         const name = req.query.name;
         const deviceId = req.query.deviceId;
         const location = req.query.location;
@@ -31,6 +33,7 @@ export default async (req, res) => {
         const state = req.query.state;
         const community = req.query.community;
         if (hash === jsSha512(
+            organizationId +
             name +
             deviceId +
             location +
@@ -40,6 +43,7 @@ export default async (req, res) => {
         )) {
             const createDeviceInput = {
                 input: {
+                    deviceOrganizationId: organizationId,
                     name,
                     deviceId,
                     location,
