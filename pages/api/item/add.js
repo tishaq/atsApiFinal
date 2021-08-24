@@ -66,7 +66,7 @@ export default async (req, res) => {
                 // console.log(raw);
                 //check if user exist and authorized
                 const apiUserResponse = raw.data.getApiUser || {}
-                if (apiUser == apiUserResponse.apiUsername &&
+                if (apiUser == apiUserResponse.id &&
                     apiKey == apiUserResponse.apiKey) {
                     try {
                         raw = await API.graphql(
