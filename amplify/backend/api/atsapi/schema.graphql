@@ -1,5 +1,5 @@
 type Transaction @model {
-  id: ID!
+  id: String!
   agent: Agent! @connection(name: "AgentTransaction")
   device: Device! @connection(name: "DeviceTransaction")
   item: Item! @connection(name: "TransactionItem")
@@ -11,7 +11,7 @@ type Transaction @model {
 }
 
 type Agent @model {
-  id: ID!
+  id: String!
   name: String!
   customers: [Customer] @connection(name: "CustomerAgent")
   Transactions: [Transaction] @connection(name: "AgentTransaction")
@@ -23,7 +23,7 @@ type Agent @model {
 }
 
 type Device @model {
-  id: ID!
+  id: String!
   Transactions: [Transaction] @connection(name: "DeviceTransaction")
   items: [Item] @connection(name: "DeviceItem")
   Organization: Organization! @connection(name: "DeviceOrganization")
@@ -36,7 +36,7 @@ type Device @model {
 }
 
 type Item @model {
-  id: ID!
+  id: String!
   code: String!
   device: Device! @connection(name: "DeviceItem")
   Transactions: [Transaction] @connection(name: "TransactionItem")
@@ -49,7 +49,7 @@ type Item @model {
 }
 
 type Customer @model {
-  id: ID!
+  id: String!
   name: String!
   agent: Agent @connection(name: "CustomerAgent")
   transactions: [Transaction] @connection(name: "CustomerTransaction")
@@ -57,14 +57,14 @@ type Customer @model {
   code: String!
 }
 type ApiUser @model {
-  id: ID!
+  id: String!
   apiKey: String!
   apiUsername: String!
   role: String!
 }
 
 type Organization @model{
-  id: ID!
+  id: String!
   Agents: [Agent] @connection(name: "AgentOrganization")
   Devices: [Device] @connection(name: "DeviceOrganization")
   name: String!
