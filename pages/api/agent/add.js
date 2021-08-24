@@ -30,6 +30,7 @@ export default async (req, res) => {
         const password = req.query.password;
         const phone = req.query.phone;
         const type = req.query.type;
+        const id = req.query.id;
         if (hash === jsSha512(
             organizationId +
             name +
@@ -40,6 +41,7 @@ export default async (req, res) => {
         )) {
             const createAgentInput = {
                 input: {
+                    id,
                     agentOrganizationId: organizationId,
                     name,
                     email,

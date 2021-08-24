@@ -26,6 +26,7 @@ export default async (req, res) => {
         const agentId = req.query.agentId
         const phone = req.query.phone
         const code = req.query.code
+        const id = req.query.id
         if (hash === jsSha512(
             name +
             agentId +
@@ -34,6 +35,7 @@ export default async (req, res) => {
         )) {
             const createCustomerInput = {
                 input: {
+                    id,
                     name,
                     customerAgentId: agentId,
                     phone,

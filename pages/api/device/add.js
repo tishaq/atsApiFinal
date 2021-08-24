@@ -32,6 +32,7 @@ export default async (req, res) => {
         const lga = req.query.lga;
         const state = req.query.state;
         const community = req.query.community;
+        const id = req.query.id;
         if (hash === jsSha512(
             organizationId +
             name +
@@ -43,6 +44,7 @@ export default async (req, res) => {
         )) {
             const createDeviceInput = {
                 input: {
+                    id,
                     deviceOrganizationId: organizationId,
                     name,
                     deviceId,

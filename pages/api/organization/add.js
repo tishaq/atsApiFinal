@@ -26,6 +26,7 @@ export default async (req, res) => {
         const description = req.query.description;
         const logoUrl = req.query.logoUrl
         const phone = req.query.phone;
+        const id = req.query.id;
         if (hash === jsSha512(
             name +
             description +
@@ -34,6 +35,7 @@ export default async (req, res) => {
         )) {
             const createOrganizationInput = {
                 input: {
+                    id,
                     name,
                     description,
                     logoUrl,

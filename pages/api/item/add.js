@@ -34,6 +34,7 @@ export default async (req, res) => {
         const unit = req.query.unit;
         const withQuantity = req.query.withQuantity;
         const withFromTo = req.query.withFromTo;
+        const id = req.query.id;
         if (hash === jsSha512(
             code +
             deviceId +
@@ -46,6 +47,7 @@ export default async (req, res) => {
         )) {
             const createItemInput = {
                 input: {
+                    id,
                     code,
                     itemDeviceId: deviceId,
                     category,
