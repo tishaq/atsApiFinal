@@ -42,12 +42,13 @@ export default async (req, res) => {
             try {
                 raw = await API.graphql(
                     graphqlOperation(queries.getApiUser, {
-                        id: apiKey
+                        id: apiUser
                     })
                 );
                 // console.log(raw);
                 //check if user exist and authorized
                 const apiUserResponse = raw.data.getApiUser || {}
+                // console.log(apiUserResponse);
                 if (apiUser == apiUserResponse.id &&
                     apiKey == apiUserResponse.apiKey) {
                     try {

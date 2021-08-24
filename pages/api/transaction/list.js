@@ -29,7 +29,7 @@ export default async (req, res) => {
             try {
                 raw = await API.graphql(
                     graphqlOperation(queries.getApiUser, {
-                        id: apiKey
+                        id: apiUser
                     })
                 );
                 // console.log(raw);
