@@ -20,6 +20,7 @@ export default async (req, res) => {
         req.query.location &&
         req.query.lga &&
         req.query.state &&
+        req.query.id &&
         req.query.community
     ) {
         const apiUser = req.query.apiUser;

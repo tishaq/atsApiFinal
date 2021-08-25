@@ -20,6 +20,7 @@ export default async (req, res) => {
         req.query.quantity &&
         req.query.date &&
         req.query.amount &&
+        req.query.id &&
         req.query.timeStamp
     ) {
         const apiUser = req.query.apiUser;
@@ -33,6 +34,7 @@ export default async (req, res) => {
         const amount = req.query.amount;
         const date = req.query.date;
         const timeStamp = req.query.timeStamp;
+        const id = req.query.id;
         console.log(jsSha512(
             agentId +
             deviceId +
@@ -56,6 +58,7 @@ export default async (req, res) => {
 
             const createTransactionInput = {
                 input: {
+                    id,
                     transactionAgentId: agentId,
                     transactionDeviceId: deviceId,
                     transactionItemId: itemId,

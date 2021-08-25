@@ -17,6 +17,7 @@ export default async (req, res) => {
         req.query.name &&
         req.query.agentId &&
         req.query.phone &&
+        req.query.id &&
         req.query.code
     ) {
         const apiUser = req.query.apiUser;

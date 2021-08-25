@@ -21,7 +21,8 @@ export default async (req, res) => {
         req.query.measure &&
         req.query.unit &&
         req.query.withQuantity &&
-        req.query.withFromTo
+        req.query.withFromTo &&
+        req.query.id
     ) {
         const apiUser = req.query.apiUser;
         const apiKey = req.query.apiKey;
