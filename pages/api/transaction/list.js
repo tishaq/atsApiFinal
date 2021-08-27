@@ -44,7 +44,7 @@ export default async (req, res) => {
                                 graphqlOperation(queries.listTransactions,
                                     {
                                         filter: {
-                                            timeStamp: { between: [from, to] }
+                                            date: { between: [from, to] }
                                         },
                                         limit: 10000,
                                         nextToken: nextToken

@@ -46,7 +46,7 @@ export default async (req, res) => {
                                     {
                                         filter: {
                                             and: {
-                                                timeStamp: { between: [from, to] },
+                                                date: { between: [from, to] },
                                                 transactionDeviceId: { eq: deviceId }
                                             }
                                         },
