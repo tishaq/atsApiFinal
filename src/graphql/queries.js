@@ -70,6 +70,39 @@ export const listTransactions = /* GraphQL */ `
         timeStamp
         createdAt
         updatedAt
+        item{
+          id
+          code
+          category
+          name
+          measure
+          unit
+          withQuantity
+          withFromTo
+          createdAt
+          updatedAt
+        }
+        agent{
+          id
+          name
+          email
+          password
+          phone
+          type
+          createdAt
+          updatedAt  
+        }
+        device{
+          id
+          name
+          deviceId
+          location
+          lga
+          state
+          community
+          createdAt
+          updatedAt
+        }
       }
       nextToken
     }
